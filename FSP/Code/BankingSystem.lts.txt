@@ -1,0 +1,61 @@
+/* ----------------------------------------------------------- 
+   File:	 	 BankingSystem.lts   
+   Module: 	 	 6SENG002W Concurrent Programming
+   Author:	 	 Shiromi Thevarajan
+   Description:	 Coursework Specification
+   Created:	 	 Saturday, 01 January 2022
+   ----------------------------------------------------------- */
+   
+/* ================================== CONSTANTS, RANGES AND SETS ================================== */   
+
+/* CONSTANTS */
+const MIN_TRANSACTION_AMOUNT = 1
+const MAX_TRANSACTION_AMOUNT = 2
+
+/* RANGES */
+range TRANSACTION_AMOUNT = MIN_TRANSACTION_AMOUNT..MAX_TRANSACTION_AMOUNT
+range INITIAL_BALANCE	 = 5..5
+range NEW_BALANCE		 = 3..7
+
+/* SETS */
+set AccountUsers   = { student, grandmother, loanCompany, university }
+set AccountActions = { currentAccount.{ readBalance [ INITIAL_BALANCE ] , computeNewBalance [ NEW_BALANCE ] , updateBalance [ NEW_BALANCE ] } }
+
+/* ==========================================  PROCESSES ========================================== */
+
+/* CURRENT ACCOUNT PROCESS */
+CURRENT_ACCOUNT = ( readBalance [ initialBalance : INITIAL_BALANCE ] -> computeNewBalance [ newBalance : NEW_BALANCE ] -> updateBalance [ newBalance ] -> CURRENT_ACCOUNT ) .
+	
+/* STUDENT PROCESS */
+STUDENT	= ( currentAccount.readBalance [ currentBalance : INITIAL_BALANCE ] -> WITHDRAWAL [ currentBalance ] ) ,
+	WITHDRAWAL [ currentBalance : INITIAL_BALANCE ]  = ( withdrawMoney [ amount : TRANSACTION_AMOUNT ] -> COMPUTE_NEW_BALANCE [ currentBalance - amount ] ) ,
+	COMPUTE_NEW_BALANCE [ newBalance : NEW_BALANCE ] = ( currentAccount.computeNewBalance [ newBalance ] -> BUY_SAMSUNG_PHONE [ newBalance ] ) ,
+	BUY_SAMSUNG_PHONE [ newBalance : NEW_BALANCE ] 	 = ( buySamsungPhone -> UPDATE_BALANCE [ newBalance ] ) ,
+	UPDATE_BALANCE [ newBalance : NEW_BALANCE ] 	 = ( currentAccount.updateBalance [ newBalance ] -> STUDENT ) + AccountActions .
+	
+/* GRANDMOTHER PROCESS */
+GRANDMOTHER = ( currentAccount.readBalance [ currentBalance : INITIAL_BALANCE ] -> DEPOSIT [ currentBalance ] ) ,
+	DEPOSIT [ currentBalance : INITIAL_BALANCE ] 	 = ( depositBirthdayMoney [ amount : TRANSACTION_AMOUNT ] -> COMPUTE_NEW_BALANCE [ currentBalance + amount ] ) ,
+	COMPUTE_NEW_BALANCE [ newBalance : NEW_BALANCE ] = ( currentAccount.computeNewBalance [ newBalance ] -> UPDATE_BALANCE [ newBalance ] ) ,
+	UPDATE_BALANCE [ newBalance : NEW_BALANCE ] 	 = ( currentAccount.updateBalance [ newBalance ] -> SEND_E_BIRTHDAY_CARD ) ,
+	SEND_E_BIRTHDAY_CARD 							 = ( sendEBirthdayCard -> GRANDMOTHER ) + AccountActions .
+
+/* LOAN COMPANY PROCESS */
+LOAN_COMPANY = ( currentAccount.readBalance [ currentBalance : INITIAL_BALANCE ] -> DEPOSIT [ currentBalance ] ) ,
+	DEPOSIT [ currentBalance : INITIAL_BALANCE ] 	 = ( depositLoanAmount [ amount : TRANSACTION_AMOUNT ] -> COMPUTE_NEW_BALANCE [ currentBalance + amount ] ) ,
+	COMPUTE_NEW_BALANCE [ newBalance : NEW_BALANCE ] = ( currentAccount.computeNewBalance [ newBalance ] -> UPDATE_BALANCE [ newBalance ] ) ,
+	UPDATE_BALANCE [ newBalance : NEW_BALANCE ] 	 = ( currentAccount.updateBalance [ newBalance ] -> LOAN_COMPANY ) + AccountActions .	
+	
+/* UNIVERSITY PROCESS */
+UNIVERSITY = ( currentAccount.readBalance [ currentBalance : INITIAL_BALANCE ] -> WITHDRAWAL [ currentBalance ] ) ,
+	WITHDRAWAL [ currentBalance : INITIAL_BALANCE ]  = ( withdrawFees [ amount : TRANSACTION_AMOUNT ] -> COMPUTE_NEW_BALANCE [ currentBalance - amount ] ) ,
+	COMPUTE_NEW_BALANCE [ newBalance : NEW_BALANCE ] = ( currentAccount.computeNewBalance [ newBalance ] -> UPDATE_BALANCE [ newBalance ] ) ,
+	UPDATE_BALANCE [ newBalance : NEW_BALANCE ] 	 = ( currentAccount.updateBalance [ newBalance ] -> UNIVERSITY ) + AccountActions .
+	
+/* BANKING SYSTEM PROCESS */
+|| BANKING_SYSTEM = (
+	student : STUDENT || 
+	grandmother : GRANDMOTHER || 
+	loanCompany : LOAN_COMPANY || 
+	university : UNIVERSITY ||
+	AccountUsers :: currentAccount : CURRENT_ACCOUNT ) .

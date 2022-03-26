@@ -1,0 +1,80 @@
+"C:\Program Files\Java\jdk1.8.0_291\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2021.1.3\lib\idea_rt.jar=51847:C:\Program Files\JetBrains\IntelliJ IDEA 2021.1.3\bin" -Dfile.encoding=UTF-8 -classpath "C:\Program Files\Java\jdk1.8.0_291\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\deploy.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\access-bridge-64.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\cldrdata.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\dnsns.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\jaccess.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\jfxrt.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\localedata.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\nashorn.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunec.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunjce_provider.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunmscapi.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\sunpkcs11.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\ext\zipfs.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\javaws.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jfxswt.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\management-agent.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\plugin.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_291\jre\lib\rt.jar;D:\IdeaProjects\BankingSystem\target\classes" com.banking.system.BankingSystem
+=========================================================
+------------- Welcome to The Banking System -------------
+=========================================================
+
+09-01-2022 22:35:08 INFO - Humans and Organizations thread groups were created.
+09-01-2022 22:35:08 INFO - Student, Grandmother, Loan Company and University threads were created.
+09-01-2022 22:35:08 INFO - Starting Student, Grandmother, Loan Company and University threads.
+
+------------- Student's Bank Transactions Started -------------
+------------- Grandmother's Bank Transactions Started -------------
+------------- Loan Company's Bank Transactions Started -------------
+------------- University's Bank Transactions Started -------------
+09-01-2022 22:35:08 INFO - The account doesn't sufficient funds for the withdrawal. Waiting until the funds are available. [Customer: IIT, Amount: 40000]
+09-01-2022 22:35:08 {Loan Company}  - The deposit transaction was successful.    [Customer: People's Bank, Amount: 50000]
+09-01-2022 22:35:08 {University}    - The withdrawal transaction was successful. [Customer: IIT, Amount: 40000]
+09-01-2022 22:35:08 {Grandmother}   - The deposit transaction was successful.    [Customer: Rajeswary Philip, Amount: 5000]
+09-01-2022 22:35:08 {Student}       - The deposit transaction was successful.    [Customer: Shiromi Theverajan, Amount: 80000]
+09-01-2022 22:35:08 {Loan Company}  - The deposit transaction was successful.    [Customer: People's Bank, Amount: 50000]
+09-01-2022 22:35:08 {University}    - The withdrawal transaction was successful. [Customer: IIT, Amount: 40000]
+09-01-2022 22:35:08 {Grandmother}   - The deposit transaction was successful.    [Customer: Rajeswary Philip, Amount: 10000]
+------------- Grandmother's Bank Transactions Ended -------------
+09-01-2022 22:35:08 {University}    - The withdrawal transaction was successful. [Customer: IIT, Amount: 40000]
+09-01-2022 22:35:08 {Student}       - The withdrawal transaction was successful. [Customer: Shiromi Theverajan, Amount: 25000]
+09-01-2022 22:35:08 {Loan Company}  - The deposit transaction was successful.    [Customer: People's Bank, Amount: 50000]
+------------- University's Bank Transactions Ended -------------
+09-01-2022 22:35:08 {Student}       - The withdrawal transaction was successful. [Customer: Shiromi Theverajan, Amount: 15000]
+------------- Loan Company's Bank Transactions Ended -------------
+09-01-2022 22:35:08 {Student}       - The withdrawal transaction was successful. [Customer: Shiromi Theverajan, Amount: 5000]
+09-01-2022 22:35:08 {Student}       - The withdrawal transaction was successful. [Customer: Shiromi Theverajan, Amount: 5000]
+09-01-2022 22:35:08 {Student}       - The withdrawal transaction was successful. [Customer: Shiromi Theverajan, Amount: 2000]
+------------- Student's Bank Transactions Ended -------------
+
+Statement for Shiromi Theverajan's Account: 5614125
+================================================
+Customer                 Amount        Balance
+================================================
+People's Bank             50000       55000
+Shiromi Theverajan        80000      135000
+Rajeswary Philip           5000      140000
+IIT                       40000      100000
+People's Bank             50000      150000
+IIT                       40000      110000
+Rajeswary Philip          10000      120000
+IIT                       40000       80000
+Shiromi Theverajan        25000       55000
+People's Bank             50000      105000
+Shiromi Theverajan        15000       90000
+Shiromi Theverajan         5000       85000
+Shiromi Theverajan         5000       80000
+Shiromi Theverajan         2000       78000
+================================================
+
+09-01-2022 22:35:08 INFO - Student, Grandmother, Loan Company and University threads complete their execution.
+
+Statement for Shiromi Theverajan's Account: 5614125
+================================================
+Customer                 Amount        Balance
+================================================
+People's Bank             50000       55000
+Shiromi Theverajan        80000      135000
+Rajeswary Philip           5000      140000
+IIT                       40000      100000
+People's Bank             50000      150000
+IIT                       40000      110000
+Rajeswary Philip          10000      120000
+IIT                       40000       80000
+Shiromi Theverajan        25000       55000
+People's Bank             50000      105000
+Shiromi Theverajan        15000       90000
+Shiromi Theverajan         5000       85000
+Shiromi Theverajan         5000       80000
+Shiromi Theverajan         2000       78000
+================================================
+
+================================================
+------------------ Thank You -------------------
+================================================
+
+Process finished with exit code 0
